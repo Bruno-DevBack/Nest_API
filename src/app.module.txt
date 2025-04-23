@@ -1,0 +1,22 @@
+import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Livro } from './livro/livro.entity'; // 👈 ajuste o caminho se necessário
+import { LivroModule } from './livro/livro.module';
+
+@Module({
+  imports: [
+  TypeOrmModule.forRoot({
+  type: 'mysql',
+  host: 'localhost',
+  port: 3306,
+  username: 'root',
+  password: '', // ou '123', dependendo do seu XAMPP
+  database: 'biblioteca',
+  entities: [Livro],
+  synchronize: true, // em produção, mude para false
+  }),
+  LivroModule,
+  ],
+  })
+  export class AppModule {}
+  
